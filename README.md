@@ -2,7 +2,9 @@
 
 A Stash plugin that adds a multi-category rating system for performers, split across physical and performance criteria. The plugin calculates a weighted average and sets the Stash performer rating automatically.
 
-<!-- screenshots -->
+![Rating Modal](screenshot-modal.png)
+![Performer Page](screenshot-performer-page.png)
+![Settings](screenshot-settings.png)
 
 ## Credits
 
