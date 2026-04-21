@@ -1,3 +1,7 @@
+# Based on stashapp-plugin-advanced-scene-ratings by shackofnoreturn
+# Original: https://github.com/shackofnoreturn/stashapp-plugin-advanced-scene-ratings
+# License: AGPL v3 - https://www.gnu.org/licenses/agpl-3.0.html
+
 import sys
 import re
 import json

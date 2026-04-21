@@ -1,33 +1,54 @@
+// Based on stashapp-plugin-advanced-scene-ratings by shackofnoreturn
+// Original: https://github.com/shackofnoreturn/stashapp-plugin-advanced-scene-ratings
+// License: AGPL v3 - https://www.gnu.org/licenses/agpl-3.0.html
+
 (function () {
     const CATEGORY_PATTERN = /^(.+?)\s*:\s*([0-5])$/;
-    let debounceTimer;
-    let observer = new MutationObserver(() => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            const urlMatch = window.location.pathname.match(/\/performers\/(\d+)/);
-            if (urlMatch && !window.location.pathname.includes('edit')) {
-                const performerId = urlMatch[1];
-                if (document.querySelector('#perf-rating-trigger')) return;
+    let pollTimer = null;
 
-                let targetElement = document.querySelector('[class*="Rating_rating"], [class*="Rating-rating"], .rating-stars, .Rating, .performer-rating, .rating-container');
-                if (!targetElement) {
-                    const stars = document.querySelectorAll('svg[data-icon="star"], svg[data-icon="star-half-alt"]');
-                    if (stars.length > 0) targetElement = stars[0].closest('div') || stars[0].parentElement;
-                }
-                if (!targetElement) targetElement = document.querySelector('.performer-info h1, h1.title, .performer-header h1, [class*="PerformerDetails"] h1, [class*="performer"] h1');
+    function tryInject(performerId) {
+        if (document.querySelector('#perf-rating-trigger')) return true;
+        const ratingStars = document.querySelector('.quality-group .rating-stars');
+        if (ratingStars) {
+            injectTrigger(ratingStars, performerId);
+            return true;
+        }
+        return false;
+    }
 
-                if (targetElement) {
-                    injectTrigger(targetElement, performerId);
-                } else {
-                    injectFAB(performerId);
-                }
-            } else {
-                const trigger = document.querySelector('#perf-rating-trigger');
-                if (trigger) trigger.remove();
+    function startPolling(performerId) {
+        if (pollTimer) clearInterval(pollTimer);
+        let attempts = 0;
+        pollTimer = setInterval(() => {
+            attempts++;
+            if (tryInject(performerId) || attempts >= 40) {
+                clearInterval(pollTimer);
+                pollTimer = null;
             }
-        }, 500);
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+        }, 100);
+    }
+
+    let lastPath = null;
+    function onLocationChange() {
+        const urlMatch = window.location.pathname.match(/\/performers\/(\d+)/);
+        if (urlMatch && !window.location.pathname.includes('edit')) {
+            const performerId = urlMatch[1];
+            if (window.location.pathname !== lastPath) {
+                lastPath = window.location.pathname;
+                const existing = document.querySelector('#perf-rating-trigger');
+                if (existing) existing.remove();
+                startPolling(performerId);
+            }
+        } else {
+            lastPath = null;
+            if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+            const existing = document.querySelector('#perf-rating-trigger');
+            if (existing) existing.remove();
+        }
+    }
+
+    PluginApi.Event.addEventListener('stash:location', onLocationChange);
+    onLocationChange();
 
     async function gqlClient(query, variables) {
         const res = await fetch('/graphql', {
@@ -102,25 +123,15 @@
         return true;
     }
 
-    function injectTrigger(targetElement, performerId) {
+    function injectTrigger(ratingStars, performerId) {
         const triggerBtn = document.createElement('button');
         triggerBtn.id = 'perf-rating-trigger';
         triggerBtn.innerHTML = '<span style="color:#ffc107;">★</span>+';
         triggerBtn.title = "Open Performer Ratings";
         triggerBtn.className = 'adv-rating-btn';
-        targetElement.appendChild(triggerBtn);
+        // Insert immediately after the .rating-stars div
+        ratingStars.insertAdjacentElement('afterend', triggerBtn);
         triggerBtn.addEventListener('click', (e) => {
-            e.preventDefault(); e.stopPropagation(); openModal(performerId);
-        });
-    }
-
-    function injectFAB(performerId) {
-        const fab = document.createElement('button');
-        fab.id = 'perf-rating-trigger';
-        fab.innerHTML = '<span style="color:#ffc107;">★</span>+ Performer Ratings';
-        fab.className = 'adv-rating-fab';
-        document.body.appendChild(fab);
-        fab.addEventListener('click', (e) => {
             e.preventDefault(); e.stopPropagation(); openModal(performerId);
         });
     }
