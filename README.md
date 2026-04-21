@@ -2,10 +2,6 @@
 
 A Stash plugin that adds a multi-category rating system for performers, split across physical and performance criteria. The plugin calculates a weighted average and sets the Stash performer rating automatically.
 
-![Rating Modal](screenshot-modal.png)
-![Performer Page](screenshot-performer-page.png)
-![Settings](screenshot-settings.png)
-
 ## Credits
 
 Inspired by the [Advanced Rating System](https://discourse.stashapp.cc/t/advanced-rating-system/3096) plugin on the Stash community forums, which introduced the concept of using tags for multi-category ratings. This plugin builds on that idea with a full interactive UI modal, weighted physical/performance scoring, and configurable categories.
@@ -31,17 +27,21 @@ Inspired by the [Advanced Rating System](https://discourse.stashapp.cc/t/advance
 
 ## Usage
 
-1. Navigate to any performer's page in Stash
-2. Click the **★+** button (or the floating **★+ Performer Ratings** button if it doesn't appear inline)
-3. A modal opens showing all rating categories with 1–5 star selectors
-4. Rate each category — the overall performer rating updates automatically when you close the modal
-5. Hover over a category name to see a description of what it rates
+Click the **★+** button on any performer's page to open the rating modal.
 
-The overall rating is the average of physical categories and performance categories, each group averaged separately then combined — so both groups carry equal weight regardless of how many categories are in each.
+![Rating Modal](screenshot-modal.png)
+
+Rate each category using the 1–5 star selectors. Hover over the ⓘ icon next to a category name to see a description of what it rates. When you close the modal the overall performer rating is calculated and set automatically.
+
+![Performer Page](screenshot-performer-page.png)
+
+The rating is visible directly on the performer page alongside the category tags that were assigned. The overall rating is the average of physical categories and performance categories, each group averaged separately then combined — so both groups carry equal weight regardless of how many categories are in each.
 
 ## Configuration
 
 Go to **Settings → Plugins → Advanced Performer Rating** to configure:
+
+![Settings](screenshot-settings.png)
 
 **Physical categories** (all enabled by default):
 
