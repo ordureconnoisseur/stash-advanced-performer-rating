@@ -4,6 +4,10 @@ A Stash plugin that adds a multi-category rating system for performers, split ac
 
 <!-- screenshots -->
 
+## Credits
+
+Inspired by the [Advanced Rating System](https://discourse.stashapp.cc/t/advanced-rating-system/3096) plugin on the Stash community forums, which introduced the concept of using tags for multi-category ratings. This plugin builds on that idea with a full interactive UI modal, weighted physical/performance scoring, and configurable categories.
+
 ## Requirements
 
 - [Stash](https://stashapp.cc) v0.27+
