@@ -129,9 +129,9 @@ def calculate_rating(stash, performer, phys_cats, perf_cats):
     elif phys_scores: final_avg = avg_phys
     elif perf_scores: final_avg = avg_perf
     else: return
-    final_rating = round(final_avg * 2) / 2
-    final_rating = max(1.0, min(5.0, final_rating))
-    final_rating100 = round(final_rating * 20)
+    precision = max(1, int(settings.get("rating_precision", 10)))
+    final_rating100 = round(round(final_avg * 20 / precision) * precision)
+    final_rating100 = max(precision, min(100, final_rating100))
     if performer.get("rating100") != final_rating100:
         log.info(f"Updating Performer {performer['name']} rating to {final_rating}/5 ({final_rating100}/100)")
         stash.update_performer({"id": performer["id"], "rating100": final_rating100})

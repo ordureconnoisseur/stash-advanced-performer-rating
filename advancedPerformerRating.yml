@@ -48,6 +48,10 @@ settings:
     displayName: "Disable: Sluttiness"
     description: Remove Sluttiness from performance rating categories.
     type: BOOLEAN
+  rating_precision:
+    displayName: Rating Star Precision
+    description: "Match this to your Stash rating precision setting. 20 = Full, 10 = Half, 5 = Quarter, 1 = Tenth."
+    type: NUMBER
   minimum_required_tags:
     displayName: Minimum Required Tags
     description: Minimum number of category tags needed before a rating is calculated.
