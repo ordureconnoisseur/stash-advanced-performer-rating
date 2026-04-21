@@ -59,10 +59,13 @@ Go to **Settings → Plugins → Advanced Performer Rating** to configure:
 
 | Setting | Default | Description |
 |---|---|---|
+| Rating Star Precision | `10` | Match to your Stash rating precision: `20` = Full, `10` = Half, `5` = Quarter, `1` = Tenth |
 | Minimum Required Tags | `1` | How many categories must be rated before a score is calculated |
 | Allow Destructive Actions | `false` | Must be enabled before the Remove Tags task will run |
 
 All categories are active by default — check a box to disable that category.
+
+After changing precision, run **Process All Performers** to retroactively recalculate existing ratings.
 
 ## Tasks
 
@@ -79,4 +82,4 @@ Each category gets a tag in the format `Category: N` (e.g. `Face: 4`). When a pe
 - Physical score = average of all rated physical categories
 - Performance score = average of all rated performance categories
 - Final score = average of physical and performance scores (equal weight)
-- Mapped to Stash's 0–100 scale (1 star = 20, 5 stars = 100)
+- Snapped to the nearest value matching your Rating Star Precision setting (e.g. Half precision snaps to multiples of 10: 10, 20, 30 ... 100)
