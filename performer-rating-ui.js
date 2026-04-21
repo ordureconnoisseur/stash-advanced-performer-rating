@@ -38,17 +38,29 @@
         return res.json();
     }
 
+    const ALL_PHYSICAL    = ["Face", "Breasts", "Ass", "Body Overall", "Genitals"];
+    const ALL_PERFORMANCE = ["Technique", "Energy & Presence", "Sluttiness"];
+    const DISABLE_KEYS = {
+        "Face":              "disable_face",
+        "Breasts":           "disable_breasts",
+        "Ass":               "disable_ass",
+        "Body Overall":      "disable_body_overall",
+        "Genitals":          "disable_genitals",
+        "Technique":         "disable_technique",
+        "Energy & Presence": "disable_energy_presence",
+        "Sluttiness":        "disable_sluttiness",
+    };
+
     async function getPluginCategories() {
         const query = `query Configuration { configuration { plugins } }`;
         const res = await gqlClient(query);
         try {
-            const plugins = res.data.configuration.plugins;
-            const config = plugins.advancedPerformerRating;
-            const phys = (config?.categories_physical || "Face,Breasts,Ass,Body Overall,Genitals").split(',').map(s => s.trim());
-            const perf = (config?.categories_performance || "Technique,Energy & Presence").split(',').map(s => s.trim());
+            const config = res.data.configuration.plugins.advancedPerformerRating || {};
+            const phys = ALL_PHYSICAL.filter(c => !config[DISABLE_KEYS[c]]);
+            const perf = ALL_PERFORMANCE.filter(c => !config[DISABLE_KEYS[c]]);
             return [...phys, ...perf];
         } catch(e) {
-            return ["Face", "Breasts", "Ass", "Body Overall", "Genitals", "Technique", "Energy & Presence"];
+            return [...ALL_PHYSICAL, ...ALL_PERFORMANCE];
         }
     }
 
@@ -146,7 +158,8 @@
                 "Body Overall": "Proportions, waist-to-hip ratio, muscle tone, skin condition, legs, posture, and overall physical presence on camera.",
                 "Genitals": "Visual appeal and presentation of the performer's sexual organs when aroused and groomed.",
                 "Technique": "Technical ability and proficiency in sex: quality of oral, handjobs, riding rhythm, hip movement, depth control, muscle contractions, kissing, and overall sexual technique.",
-                "Energy & Presence": "Visible enthusiasm, stamina, vocalization, authenticity and intensity of pleasure expressions, eye contact, orgasm quality, and how strongly the performer commands attention."
+                "Energy & Presence": "Visible enthusiasm, stamina, vocalization, authenticity and intensity of pleasure expressions, eye contact, orgasm quality, and how strongly the performer commands attention.",
+                "Sluttiness": "Degree of sexual uninhibitedness and eagerness displayed: willingness to perform and embrace a wide range of acts (including rough sex, anal, deepthroat, messy play, degradation, or extreme kinks), visible hunger and greed for cock/pussy, active begging or initiating sex, shameless spreading and offering of body, intensity of dirty talk, and overall attitude of being freely and enthusiastically available for sexual use."
             };
             categories.forEach(cat => {
                 const row = document.createElement('div'); row.className = 'rating-row';

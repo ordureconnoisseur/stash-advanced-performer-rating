@@ -35,10 +35,22 @@ TAG_RATING_PARENT = {
     "image": SVG_TAG_IMG
 }
 
+ALL_PHYSICAL = ["Face", "Breasts", "Ass", "Body Overall", "Genitals"]
+ALL_PERFORMANCE = ["Technique", "Energy & Presence", "Sluttiness"]
+
+DISABLE_KEYS = {
+    "Face":              "disable_face",
+    "Breasts":           "disable_breasts",
+    "Ass":               "disable_ass",
+    "Body Overall":      "disable_body_overall",
+    "Genitals":          "disable_genitals",
+    "Technique":         "disable_technique",
+    "Energy & Presence": "disable_energy_presence",
+    "Sluttiness":        "disable_sluttiness",
+}
+
 # GLOBALS
 settings = {
-    "categories_physical": "Face,Breasts,Ass,Body Overall,Genitals",
-    "categories_performance": "Technique,Energy & Presence",
     "minimum_required_tags": 1,
     "allow_destructive_actions": False
 }
@@ -49,8 +61,8 @@ def main():
     stash = connect_to_stash(json_input)
     config = load_plugin_config(stash)
     update_settings_from_config(config)
-    phys_cats = [c.strip() for c in settings.get("categories_physical", "Face,Breasts,Ass,Body Overall,Genitals").split(",") if c.strip()]
-    perf_cats = [c.strip() for c in settings.get("categories_performance", "Technique,Energy & Presence").split(",") if c.strip()]
+    phys_cats = [c for c in ALL_PHYSICAL  if not settings.get(DISABLE_KEYS[c], False)]
+    perf_cats = [c for c in ALL_PERFORMANCE if not settings.get(DISABLE_KEYS[c], False)]
     minimum_required_tags = int(settings.get("minimum_required_tags", 1))
     handle_actions(json_input, stash, phys_cats, perf_cats)
     handle_hooks(json_input, stash)
@@ -83,7 +95,7 @@ def handle_actions(json_input, stash, phys_cats, perf_cats):
     mode = args.get("mode")
     if mode == "process_performers": processPerformers(stash, phys_cats, perf_cats)
     elif mode == "create_tags": createTags(phys_cats + perf_cats)
-    elif mode == "remove_tags": removeTags(phys_cats + perf_cats)
+    elif mode == "remove_tags": removeTags(ALL_PHYSICAL + ALL_PERFORMANCE)
 
 def handle_hooks(json_input, stash):
     if not stash:

@@ -37,16 +37,32 @@ The overall rating is the average of physical categories and performance categor
 
 Go to **Settings → Plugins → Advanced Performer Rating** to configure:
 
+**Physical categories** (all enabled by default):
+
+| Setting | Description |
+|---|---|
+| Disable: Face | Remove Face from rating |
+| Disable: Breasts | Remove Breasts from rating |
+| Disable: Ass | Remove Ass from rating |
+| Disable: Body Overall | Remove Body Overall from rating |
+| Disable: Genitals | Remove Genitals from rating |
+
+**Performance categories** (all enabled by default):
+
+| Setting | Description |
+|---|---|
+| Disable: Technique | Remove Technique from rating |
+| Disable: Energy & Presence | Remove Energy & Presence from rating |
+| Disable: Sluttiness | Remove Sluttiness from rating |
+
+**Other settings:**
+
 | Setting | Default | Description |
 |---|---|---|
-| Physical Categories | `Face,Breasts,Ass,Body Overall,Genitals` | Comma-separated physical rating categories |
-| Performance Categories | `Technique,Energy & Presence` | Comma-separated performance rating categories |
 | Minimum Required Tags | `1` | How many categories must be rated before a score is calculated |
 | Allow Destructive Actions | `false` | Must be enabled before the Remove Tags task will run |
 
-> **Note:** Due to a bug in Stash, settings fields will appear blank even when defaults are set. You don't need to fill them in — the plugin uses the defaults shown above automatically if a field is left empty. Only enter a value if you want to override the default.
-
-After changing categories, re-run **Create Tags** to generate tags for any new categories.
+All categories are active by default — check a box to disable that category.
 
 ## Tasks
 

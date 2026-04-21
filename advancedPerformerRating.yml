@@ -1,6 +1,6 @@
 name: Advanced Performer Rating
 description: Calculates performer ratings from category-based tags.
-version: 1.0.0
+version: 2.0.0
 url: https://github.com/ordureconnoisseur/stash-advanced-performer-rating
 exec:
   - python
@@ -16,14 +16,38 @@ hooks:
     triggeredBy:
       - Performer.Update.Post
 settings:
-  categories_physical:
-    displayName: Physical Categories
-    description: Comma-separated list of physical rating categories (e.g. Face,Breasts,Ass,Body Overall,Genitals).
-    type: STRING
-  categories_performance:
-    displayName: Performance Categories
-    description: Comma-separated list of performance rating categories (e.g. Technique,Energy & Presence).
-    type: STRING
+  disable_face:
+    displayName: "Disable: Face"
+    description: Remove Face from physical rating categories.
+    type: BOOLEAN
+  disable_breasts:
+    displayName: "Disable: Breasts"
+    description: Remove Breasts from physical rating categories.
+    type: BOOLEAN
+  disable_ass:
+    displayName: "Disable: Ass"
+    description: Remove Ass from physical rating categories.
+    type: BOOLEAN
+  disable_body_overall:
+    displayName: "Disable: Body Overall"
+    description: Remove Body Overall from physical rating categories.
+    type: BOOLEAN
+  disable_genitals:
+    displayName: "Disable: Genitals"
+    description: Remove Genitals from physical rating categories.
+    type: BOOLEAN
+  disable_technique:
+    displayName: "Disable: Technique"
+    description: Remove Technique from performance rating categories.
+    type: BOOLEAN
+  disable_energy_presence:
+    displayName: "Disable: Energy & Presence"
+    description: Remove Energy & Presence from performance rating categories.
+    type: BOOLEAN
+  disable_sluttiness:
+    displayName: "Disable: Sluttiness"
+    description: Remove Sluttiness from performance rating categories.
+    type: BOOLEAN
   minimum_required_tags:
     displayName: Minimum Required Tags
     description: Minimum number of category tags needed before a rating is calculated.
