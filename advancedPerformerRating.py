@@ -129,7 +129,8 @@ def calculate_rating(stash, performer, phys_cats, perf_cats):
     elif phys_scores: final_avg = avg_phys
     elif perf_scores: final_avg = avg_perf
     else: return
-    precision = max(1, int(settings.get("rating_precision", 10)))
+    precision_raw = settings.get("rating_precision")
+    precision = max(1, int(precision_raw)) if precision_raw else 10
     final_rating100 = round(round(final_avg * 20 / precision) * precision)
     final_rating100 = max(precision, min(100, final_rating100))
     if performer.get("rating100") != final_rating100:
