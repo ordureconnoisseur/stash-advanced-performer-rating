@@ -159,7 +159,7 @@
                 "Genitals": "Visual appeal and presentation of the performer's sexual organs when aroused and groomed.",
                 "Technique": "Technical ability and proficiency in sex: quality of oral, handjobs, riding rhythm, hip movement, depth control, muscle contractions, kissing, and overall sexual technique.",
                 "Energy & Presence": "Visible enthusiasm, stamina, vocalization, authenticity and intensity of pleasure expressions, eye contact, orgasm quality, and how strongly the performer commands attention.",
-                "Sluttiness": "Degree of sexual uninhibitedness and eagerness displayed: willingness to perform and embrace a wide range of acts (including rough sex, anal, deepthroat, messy play, degradation, or extreme kinks), visible hunger and greed for cock/pussy, active begging or initiating sex, shameless spreading and offering of body, intensity of dirty talk, and overall attitude of being freely and enthusiastically available for sexual use."
+                "Sluttiness": "Degree of sexual uninhibitedness and eagerness: willingness to embrace a wide range of acts and kinks, visible hunger and enthusiasm, active begging or initiating, shameless offering of body, intensity of dirty talk, and overall attitude of being freely and enthusiastically available."
             };
             categories.forEach(cat => {
                 const row = document.createElement('div'); row.className = 'rating-row';
