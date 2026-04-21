@@ -63,7 +63,8 @@ def main():
     update_settings_from_config(config)
     phys_cats = [c for c in ALL_PHYSICAL  if not settings.get(DISABLE_KEYS[c], False)]
     perf_cats = [c for c in ALL_PERFORMANCE if not settings.get(DISABLE_KEYS[c], False)]
-    minimum_required_tags = int(settings.get("minimum_required_tags", 1))
+    mrt_raw = settings.get("minimum_required_tags")
+    minimum_required_tags = int(mrt_raw) if mrt_raw is not None else 1
     handle_actions(json_input, stash, phys_cats, perf_cats)
     handle_hooks(json_input, stash)
 
@@ -134,7 +135,7 @@ def calculate_rating(stash, performer, phys_cats, perf_cats):
     final_rating100 = round(round(final_avg * 20 / precision) * precision)
     final_rating100 = max(precision, min(100, final_rating100))
     if performer.get("rating100") != final_rating100:
-        log.info(f"Updating Performer {performer['name']} rating to {final_rating}/5 ({final_rating100}/100)")
+        log.info(f"Updating Performer {performer['name']} rating to {final_rating100}/100")
         stash.update_performer({"id": performer["id"], "rating100": final_rating100})
 
 def processPerformers(stash, phys_cats, perf_cats):
