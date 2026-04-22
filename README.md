@@ -14,6 +14,17 @@ Inspired by the [Advanced Rating System](https://discourse.stashapp.cc/t/advance
 
 ## Installation
 
+### Option 1 — Automatic (recommended)
+
+1. In Stash go to **Settings → Plugins → Add Source** and enter:
+   ```
+   https://ordureconnoisseur.github.io/plugins/main/index.yml
+   ```
+2. Find **Advanced Performer Rating** in the plugin browser and click **Install**
+3. Run the **Create Tags** task
+
+### Option 2 — Manual
+
 1. Download this repository (Code → Download ZIP) and extract it
 2. Place the extracted folder inside a category subfolder of your Stash plugins directory:
    - **Linux/Mac:** `~/.stash/plugins/Utilities/Advanced Performer Rating/`
