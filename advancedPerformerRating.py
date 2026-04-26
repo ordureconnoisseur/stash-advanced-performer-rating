@@ -32,9 +32,9 @@ SVG_TAG_IMG = (
     "ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPiA8L2c+Cg08L3N2Zz4="
 )
 TAG_RATING_PARENT = {
-    "name": "Performer Ratings",
-    "sort_name": "#Performer Ratings",
-    "description": "Performer Rating System",
+    "name": "Advanced Performer Rating",
+    "sort_name": "#Advanced Performer Rating",
+    "description": "Advanced Performer Rating System",
     "auto_ignore_tag": True,
     "image": SVG_TAG_IMG
 }
