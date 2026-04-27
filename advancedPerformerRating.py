@@ -39,18 +39,18 @@ TAG_RATING_PARENT = {
     "image": SVG_TAG_IMG
 }
 
-ALL_PHYSICAL = ["Face", "Breasts", "Ass", "Body Overall", "Genitals"]
-ALL_PERFORMANCE = ["Technique", "Energy & Presence", "Sluttiness"]
+ALL_PHYSICAL = ["Face ★", "Breasts ★", "Ass ★", "Body Overall ★", "Genitals ★"]
+ALL_PERFORMANCE = ["Technique ★", "Energy & Presence ★", "Sluttiness ★"]
 
 DISABLE_KEYS = {
-    "Face":              "disable_face",
-    "Breasts":           "disable_breasts",
-    "Ass":               "disable_ass",
-    "Body Overall":      "disable_body_overall",
-    "Genitals":          "disable_genitals",
-    "Technique":         "disable_technique",
-    "Energy & Presence": "disable_energy_presence",
-    "Sluttiness":        "disable_sluttiness",
+    "Face ★":              "disable_face",
+    "Breasts ★":           "disable_breasts",
+    "Ass ★":               "disable_ass",
+    "Body Overall ★":      "disable_body_overall",
+    "Genitals ★":          "disable_genitals",
+    "Technique ★":         "disable_technique",
+    "Energy & Presence ★": "disable_energy_presence",
+    "Sluttiness ★":        "disable_sluttiness",
 }
 
 # GLOBALS
